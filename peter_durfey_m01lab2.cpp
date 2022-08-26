@@ -7,25 +7,56 @@
 #include <iostream>
 using namespace std;
 
-void funct(int x, string y);
-int a = 4;
-string b = "string";
+class dog
+{
+    public:
+    string color, breed;
+    double weight;
+    int age;
+    dog()
+    {
+        color = "white/brown";
+        breed = "beagle";
+        weight = 45;
+        age = 7;
+    }
+};
+
+class cat
+{
+    public:
+    string color, breed;
+    double weight;
+    int age;
+    cat(string c, string b, double w, int a)
+    {
+        color = c;
+        breed = b;
+        weight = w;
+        age = a;
+    }
+};
 
 int main()
 {
-     
-    funct(a, b);
-    cout << a << " " << b <<  endl;
+    string color, breed;
+    double weight;
+    int age;
+    cout << "Enter the cat's color: ";
+    cin >> color;
+    cout << "Enter cat's breed: ";
+    cin >> breed;
+    cout << "Enter cat's weight: ";
+    cin >> weight;
+    cout << "Enter cat's age: ";
+    cin >> age;
 
+    cat cat(color, breed, weight, age);
+    dog dog();
+    cout << cat.color << endl;
+
+return 0;
 }
 
-void funct(int x, string y)
-{
-    cout << x << " " << y << endl;
-    x = 5;
-    y = "string2";
-    cout << x << " " << y << endl;
-    return;
-}
 
-//the values passed into the function changed because they were changed in the function. The origional functions in main did not change because they were only modified in the function.
+
