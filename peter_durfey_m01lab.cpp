@@ -7,19 +7,19 @@
 #include <iostream>
 using namespace std;
 
-void function(int x, string y);
+void funct(int x, string y);
 int a = 4;
 string b = "string";
 
 int main()
 {
      
-    function(a, b);
+    funct(a, b);
     cout << a << " " << b <<  endl;
 
 }
 
-void function(int x, string y)
+void funct(int x, string y)
 {
     cout << x << " " << y << endl;
     x = 5;
