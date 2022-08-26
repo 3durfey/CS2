@@ -60,9 +60,19 @@ class Cube
 
 int main() 
 {
+    double length, width, height;
+    string color;
     cout<<"Enter cube length: ";
-    
-
+    cin>>length;
+    while(!(cin >> length))
+    {
+        cout << "Invalid input\n";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cout << "Re-Enter length: ";
+    }
+    cout<<length<<endl;
+return 0;
 }
 
 
