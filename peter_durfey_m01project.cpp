@@ -60,7 +60,9 @@ class Cube
 
 int main() 
 {
+    cout<<"Enter cube length: ";
     
+
 }
 
 
