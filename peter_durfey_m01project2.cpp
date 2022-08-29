@@ -7,19 +7,19 @@
 #include <iostream>
 using namespace std;
 //create validator function for info
-void validateInt();
+void validate();
 //make class for stereo receiver
 class StereoReceiver
 {
     //declare variables
 
     string manufacturer, model, color, power;
-    int serial_number, wattage, band, channels, volume, year;
-    double frequency;
+    int serial_number, band, channels, volume, year;
+    double frequency, wattage;
 
 //create constructor
 public:
-    StereoReceiver(string manufact, int b, string m, int sn, int w, int c, string col, int v, int y, double f, string p)
+    StereoReceiver(string manufact, int b, string m, int sn, double w, int c, string col, int v, int y, double f, string p)
     {
         manufacturer = manufact;
         model = m;
@@ -67,7 +67,7 @@ int getVolume()
 {
     return volume;
 }
-int getWattage()
+double getWattage()
 {
     return wattage;
 }
@@ -107,8 +107,8 @@ void setFrequency(double f)
 int main()
 {
     string manufacturer, model, color, power;
-    int serial_number, wattage, channels, band, volume, year;
-    double frequency; 
+    int serial_number, channels, band, volume, year;
+    double frequency, wattage; 
 
     power = "OFF";
     band = 1;
@@ -116,37 +116,40 @@ int main()
     color = "black";
     year = 1956;
 
-    cout<<"Enter Year of production: ";
-    while(!(cin >> year))
+    cout<< endl <<"Enter Year of production: ";
+    while(!(cin >> year) || year > 2023 || year < 1700)
     {
-        validateInt();
+        validate();
     }
-    
+
     cout<<"Enter Manufacturer: ";
-    cin >> manufacturer;
+    while(!(cin >> manufacturer))
+    {
+        validate();
+    }
 
     cout<<"Enter Model: ";
     while(!(cin >> model))
     {
-        validateInt();
+        validate();
     }
 
     cout<<"Enter Serial Number: ";
     while(!(cin >> serial_number))
     {
-        validateInt();
+        validate();
     }
 
     cout<<"Enter Wattage: ";
     while(!(cin >> wattage))
     {
-        validateInt();
+        validate();
     }
 
     cout<<"Enter Number of Channels: ";
     while(!(cin >> channels))
     {
-        validateInt();
+        validate();
     }
 
 
@@ -157,7 +160,7 @@ int main()
     cout << endl << "Manufacturer: " << stereo.getManufacturer() << endl <<
     "Model: " << stereo.getModel() << endl <<
     "Color: " << stereo.getColor() << endl <<
-    "Model Year: " << stereo.getModel() << endl <<
+    "Model Year: " << stereo.getYear() << endl <<
     "Serial Number: " << stereo.getSerialNumber() << endl <<
     "Wattage: " << stereo.getWattage() << endl <<
     "Number of Channels: " << stereo.getChannels() << endl;
@@ -165,28 +168,28 @@ int main()
     power = "ON";
     stereo.setPower(power);
 
-    cout<<"Enter Desired Station: ";
-    while(!(cin >> frequency) || frequency < 2000)
+    cout<< endl <<"Enter Desired Station: ";
+    while(!(cin >> frequency) || frequency > 2000)
     {
-        validateInt();
+        validate();
     }
     stereo.setFrequency(frequency);
 
     cout<<"Enter Desired Band: ";
-    while(!(cin >> band))
+    while(!(cin >> band) || band < 0 || band > 3000)
     {
-        validateInt();
+        validate();
     }
     stereo.setBand(band);
 
     cout<<"Enter Desired Volume: ";
     while(!(cin >> volume) || volume < 0 || volume > 10)
     {
-        validateInt();
+        validate();
     }
     stereo.setVolume(volume);
 
-    cout << "Power Status: " << stereo.getPower() << endl <<
+    cout << endl << "Power Status: " << stereo.getPower() << endl <<
     "Band: " << stereo.getBand() << endl << 
     "Currenty Frequency: " << stereo.getFrequency() << endl <<
     "Volume Level: " << stereo.getVolume() << endl;
@@ -196,7 +199,7 @@ int main()
 }
 
 //validate function
-void validateInt()
+void validate()
 {
     cout << "Invalid input\n";
     cin.clear();
