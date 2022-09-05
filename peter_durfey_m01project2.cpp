@@ -105,17 +105,17 @@ void setFrequency(double f)
 
 //main program
 int main()
-{
+{   //declare variables
     string manufacturer, model, color, power;
     int serial_number, channels, band, volume, year;
     double frequency, wattage; 
-
+    //set intitial valuesw
     power = "OFF";
     band = 1;
     volume = 5;
     color = "black";
-    year = 1956;
-
+    
+    //get infow
     cout<< endl <<"Enter Year of production: ";
     while(!(cin >> year) || year > 2023 || year < 1700)
     {
@@ -164,10 +164,10 @@ int main()
     "Serial Number: " << stereo.getSerialNumber() << endl <<
     "Wattage: " << stereo.getWattage() << endl <<
     "Number of Channels: " << stereo.getChannels() << endl;
-    
+    //turn radio on
     power = "ON";
     stereo.setPower(power);
-
+    //get info, change it using mutators
     cout<< endl <<"Enter Desired Station: ";
     while(!(cin >> frequency) || frequency > 2000)
     {
@@ -188,12 +188,12 @@ int main()
         validate();
     }
     stereo.setVolume(volume);
-
+    // display info
     cout << endl << "Power Status: " << stereo.getPower() << endl <<
     "Band: " << stereo.getBand() << endl << 
     "Currenty Frequency: " << stereo.getFrequency() << endl <<
     "Volume Level: " << stereo.getVolume() << endl;
-
+    //turn radio off
     power = "OFF";
     stereo.setPower(power);
 }
