@@ -1,0 +1,9 @@
+AL  Alabama	      kay ivey         carmelia
+AK  Alaska        mike dunleavy    forget-me-not
+AZ  Arizona	     doug ducey       saguaro-cactus-bloom
+AR  Arkansas      asa hutchinson   apple-blossom
+CA  California    gavin newsom     california-poppy
+CO  Colorado      jared polis      rocky-mountain-columbine
+CT  Connecticut   ned lamont       mountain-laurel
+DE  Delaware      john carney      peach-blossom
+FL  Florida       Ron DeSantis     orange-blossom

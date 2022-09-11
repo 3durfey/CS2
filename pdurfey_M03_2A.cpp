@@ -6,27 +6,60 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
+#include <set>
+#include <vector>
+#include <iterator>    
+#include <algorithm>
+
 using namespace std;
-void openFile(ifstream&, string);
 int main ()
 {
-    ifstream inFile;
-    openFile(inFile, "sample.txt");
+    //create data types
+    set<string> non_duplicate;
+    vector<string> vectorstring;
+    vector<string>::iterator it;
 
-    
-}
-void opeFile(ifstream& inFile, string fname)
-{
-    inFile.open(fname);
-    if(inFile.is_open())
+    ifstream file;
+    //open file return 1 if can't be opened
+    file.open ("txt.txt");
+    if (!file.is_open()) return 1;
+    //make variable for word
+    string word;
+    //take words one at a time from file and add to vector/
+    while (file >> word)
     {
-        cout << "successfully opened file"<< endl;
+        vectorstring.push_back(word);
     }
-    else
+    //check vector from repeats and add to set if not
+    do
     {
-        cout << "failure to open file" << endl;
-        exit(1);
-    }
+        string temp = vectorstring[0];
+        vectorstring.erase(vectorstring.begin());
+        bool duplicate = 0;
+        if (vectorstring.size()  == 0)
+        {
+            non_duplicate.insert (temp);
+            break;
+        }
+        check:
+        it = find(vectorstring.begin(), vectorstring.end(), temp);
+        if (*it != temp && duplicate != 1)
+        {
+            non_duplicate.insert (temp);
+        }
+        else if (*it == temp)
+        {
+            vectorstring.erase(it);
+            duplicate = 1;
+            goto check;
+        }
+    } while (!vectorstring.empty());
 
+    //output results
+    cout << "List of non-repeating words: ";
+    for (auto x = non_duplicate.begin(); x !=non_duplicate.end(); x++)
+    {
+        cout << *x << " ";
+    }
+    cout << endl;
 }

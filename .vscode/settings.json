@@ -3,6 +3,14 @@
         "__locale": "cpp",
         "iostream": "cpp",
         "iosfwd": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "*.tcc": "cpp",
+        "random": "cpp"
     }
 }
