@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 //create validator function for info
 void validate();
@@ -98,12 +99,12 @@ int setBand(int b)
     {
         if (band < 6 || band > 9)
         {
-            throw (invalidBand);
+            throw invalid_argument(invalidBand);
         }
     }
-    catch (string b)
+    catch (invalid_argument msg)
     {
-        cout << "Invalid " << invalidBand << endl;
+        cout << "Invalid " << msg.what() << endl;
         return 1;
     }
     return 0;
