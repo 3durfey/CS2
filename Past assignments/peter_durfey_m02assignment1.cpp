@@ -183,6 +183,8 @@ int main()
     returnvalue = userdate.setMonth(month);
     returnvalue = userdate.setYear(year);
     } while (returnvalue == 1);
+
+    
 //output modified date
     cout << "Modified date: ";
     userdate.toString(day, month, year);

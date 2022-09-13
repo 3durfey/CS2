@@ -31,7 +31,7 @@ int main ()
         vectorstring.push_back(word);
     }
     //check vector from repeats and add to set if not
-    do
+    while (!vectorstring.empty())
     {
         string temp = vectorstring[0];
         vectorstring.erase(vectorstring.begin());
@@ -53,7 +53,7 @@ int main ()
             duplicate = 1;
             goto check;
         }
-    } while (!vectorstring.empty());
+    };
 
     //output results
     cout << "List of non-repeating words: ";
