@@ -81,7 +81,7 @@ template <typename T> vector<T> getData<T>::highScore()
     {
         if (ptr_grades[x] > hs)
         {
-            hs = ptr_grades[x];
+            hs = ptr_grades[x];void validate()
         }
     }
     high_score.push_back (hs);

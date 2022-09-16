@@ -12,6 +12,7 @@
         "initializer_list": "cpp",
         "*.tcc": "cpp",
         "random": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "istream": "cpp"
     }
 }
