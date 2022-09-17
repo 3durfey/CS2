@@ -13,6 +13,7 @@
         "*.tcc": "cpp",
         "random": "cpp",
         "stdexcept": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "ostream": "cpp"
     }
 }
