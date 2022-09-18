@@ -14,6 +14,8 @@ string ranks[10] = {"private", "specialist", "corporal", "sergeant", "officer", 
 //functions
 void validate();
 string highest_rank();
+int rank_number(string n);
+
 //int for number of soldiers
 int num;
 
@@ -25,6 +27,61 @@ class soldiers
     string classification;
 
     public:
+    soldiers& operator++()
+    {
+        int rank_num = rank_number(rank);
+        try
+        {
+            if (rank_num > 10)
+            {
+                throw invalid_argument("No promotion available");
+            }
+            else
+            {
+                rank = ranks[rank_num + 1];
+            }
+        }
+        catch (invalid_argument msg)
+        {
+                cout << msg.what() << endl;
+        }
+        return *this;
+    }
+
+    soldiers operator++(int)
+    {
+        soldiers temp = *this;
+        ++*this;
+        return temp;
+    }
+    soldiers& operator--()
+    {
+        int rank_num = rank_number(rank);
+        try
+        {
+            if (rank_num <= 0)
+            {
+                throw invalid_argument("No demotion available");
+            }
+            else
+            {
+                rank = ranks[rank_num - 1];
+            }
+        }
+        catch (invalid_argument msg)
+        {
+                cout << msg.what() << endl;
+        }
+        return *this;
+    }
+
+    soldiers operator--(int)
+    {
+        soldiers temp = *this;
+        --*this;
+        return temp;
+    }
+    //constructor
     soldiers(string name, string rank)
     {
         try
@@ -36,6 +93,7 @@ class soldiers
         catch (invalid_argument msg)
         {
                 cout << msg.what() << endl;
+                validate();
         }
     }
     bool operator == (soldiers s1)
@@ -62,11 +120,11 @@ class soldiers
         }
         if (rank1 < rank2)
         {
-            return name;
+            return s1.name;
         }
         else 
         {
-            return s1.name;
+            return name;
         }
     }
     void check_rank(string m)
@@ -83,7 +141,6 @@ class soldiers
         if (found != 1)
         {
             throw invalid_argument("Invalid rank");
-
         }
     }
     void set_class(string r)
@@ -125,7 +182,7 @@ class soldiers
     }
     string toString()
     {
-        string m = name + " " + rank + " " + classification;
+        string m = name + ", " + rank + ", " + classification;
         return m;
     }
     string get_name()
@@ -136,15 +193,20 @@ class soldiers
     {
         return this->rank;
     }
+
 };
 vector<soldiers> soldier_list;
+
+
+
+
 
 int main()
 {
     string name, soldier_rank;
     //get number of soldiers to be entered
     cout << "Enter number of soldiers to be entered: ";
-    while (!(cin >> num) || num > 7)
+    while (!(cin >> num) || num > 7 || num < 4)
     {
         validate();
     }
@@ -164,20 +226,51 @@ int main()
     }
 
     //list all soldiers
+    cout << endl;
     cout << "List of all soldiers: " << endl;
     for(int x = 0; x < soldier_list.size(); x++)
     {
         cout << soldier_list[x].toString() << endl;
     }
-    //highest ranking soldier entered
-    string highest = highest_rank();
-    cout << highest << endl;
 
-    //create random number generator based on number of soldiers to randomly change ranks
-    srand(time(0));
-    int random = rand();
+    //highest ranking soldier entered
+    cout << endl;
+    cout << "Highest ranked soldier: ";
+    string highest = highest_rank();
+    cout << highest << endl << endl;
+
+    //get random number soldier
+    int num_change;
+    cout << "Enter number between 4 and " << num << ": " << endl;
+    while (!(cin >> num_change) || num > 7)
+    {
+        validate();
+    }
+    num_change--;
+    cout << "Soldier to be demoted: " << soldier_list[num_change].toString() << endl;
+    --soldier_list[num_change];
+    cout << "New rank: " << soldier_list[num_change].get_rank() << endl;
+
+    cout << "Enter number between 4 and " << num << ": " << endl;
+    while (!(cin >> num_change) || num > 7)
+    {
+        validate();
+    }
+    num_change--;
+    cout << endl;
+    cout << "Soldier to be promoted: " << soldier_list[num_change].toString() << endl;
+    ++soldier_list[num_change];
+    cout << "New rank: " << soldier_list[num_change].get_rank() << endl;
+
 
 }
+
+
+
+
+
+
+
 void validate()
 {
     cout << "Invalid input\n";
@@ -185,6 +278,7 @@ void validate()
     cin.ignore(256, '\n');
     cout << "Re-Enter: ";
 }
+
 string highest_rank()
 {
     string highest_rank;
@@ -199,4 +293,15 @@ string highest_rank()
             }
         }
         return highest_rank;
+}
+int rank_number(string n)
+{
+    for (int x = 0; x < 10; x++)
+        {
+            if (n == ranks[x])
+            {
+                return x;
+            }
+        }
+    return 1;
 }
